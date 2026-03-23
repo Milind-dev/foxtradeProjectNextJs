@@ -16,9 +16,6 @@ const DashboardId = () => {
     const fetchData = async () => {
       const res = await fetch(
         `https://api.binance.com/api/v3/ticker/24hr?symbol=${params.id}`,
-        {
-          cache: "no-cache",
-        },
       );
       const result = await res.json();
       setData(result);
