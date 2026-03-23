@@ -1,0 +1,22 @@
+.Container {
+  padding: 20px;
+  background: #c2a9b1;
+  min-height: 50vh;
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid white;
+  padding: 16px;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: linear-gradient(135deg, #c2a9b1, #1e293b);
+}
