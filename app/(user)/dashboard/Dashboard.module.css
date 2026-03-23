@@ -20,3 +20,17 @@
   transform: translateY(-5px) scale(1.02);
   background: linear-gradient(135deg, #c2a9b1, #1e293b);
 }
+
+.backbtn {
+  color: #f5f2f3;
+  border: 1px solid white;
+  border-right: transparent;
+  border-left: transparent;
+  box-shadow: 2rem;
+  cursor: cell;
+  border-top: transparent;
+
+  border-radius: 0.3rem;
+  padding: 1.5rem;
+  margin: 2rem;
+}

@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import style from "../Dashboard.module.css";
+import { useParams, useRouter } from "next/navigation";
 
 const DashboardId = () => {
+  const router = useRouter();
   const params = useParams();
   // console.log("params ", params);
 
@@ -14,6 +16,9 @@ const DashboardId = () => {
     const fetchData = async () => {
       const res = await fetch(
         `https://api.binance.com/api/v3/ticker/24hr?symbol=${params.id}`,
+        {
+          cache: "no-cache",
+        },
       );
       const result = await res.json();
       setData(result);
@@ -25,12 +30,19 @@ const DashboardId = () => {
   if (!data) return <p>Loading...</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>{data.symbol}</h1>
-      <p>Price: ₹ {Number(data.lastPrice).toFixed(2)}</p>
-      <p>24h Change: {data.priceChangePercent}%</p>
-      <p>High: {data.highPrice}</p>
-      <p>Low: {data.lowPrice}</p>
+    <div>
+      <div>
+        <button className={style.backbtn} onClick={() => router.back()}>
+          ← Back
+        </button>
+      </div>
+      <div style={{ padding: "20px" }}>
+        <h1>{data.symbol}</h1>
+        <p>Price: ₹ {Number(data.lastPrice).toFixed(2)}</p>
+        <p>24h Change: {data.priceChangePercent}%</p>
+        <p>High: {data.highPrice}</p>
+        <p>Low: {data.lowPrice}</p>
+      </div>
     </div>
   );
 };
