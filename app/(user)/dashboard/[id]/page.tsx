@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { cache, useEffect, useState } from "react";
 import style from "../Dashboard.module.css";
 import { useParams, useRouter } from "next/navigation";
 
@@ -10,17 +10,23 @@ const DashboardId = () => {
 
   const [data, setData] = useState(null);
 
+  const fetchData = cache(async () => {
+    const res = await fetch(
+      `https://api.binance.com/api/v3/ticker/24hr?symbol=${params.id}`,
+    );
+    const result = await res.json();
+    setData(result);
+  });
+
   useEffect(() => {
     if (!params?.id) return;
-
-    const fetchData = async () => {
-      const res = await fetch(
-        `https://api.binance.com/api/v3/ticker/24hr?symbol=${params.id}`,
-      );
-      const result = await res.json();
-      setData(result);
-    };
-
+    // const fetchData = async () => {
+    //   const res = await fetch(
+    //     `https://api.binance.com/api/v3/ticker/24hr?symbol=${params.id}`,
+    //   );
+    //   const result = await res.json();
+    //   setData(result);
+    // };
     fetchData();
   }, [params.id]);
 
